@@ -14,6 +14,7 @@ using System.Threading.Tasks;
 
 namespace CompanyEmployee.Controllers
 {
+    [ApiVersion("2.0")]
     [Route("api/companies/{companyId}/employees")]
     public class EmployeesController : ControllerBase
     {
@@ -35,7 +36,6 @@ namespace CompanyEmployee.Controllers
 
         // api/companies/C9D4C053-49B6-410CBC78-2D54A9991870/employees?pageNumber=2&pageSize=2
         [HttpGet]
-        [ValidateMediaType]
         public async Task<IActionResult> GetEmployeesForCompany(Guid companyId, EmployeeRequestParameter reqParam)
         {
             var company = await _repositoryManager.Company.GetCompanyAsync(companyId, trackChanges: false);

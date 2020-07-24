@@ -38,12 +38,15 @@ namespace CompanyEmployee
 
             services.AddScoped<IDataShaper<EmployeeDto>, DataShaper<EmployeeDto>>();
 
+
             // Browser से आने वाले "Accept" header के अनुसार response भेजना। e.g. 
             services.AddControllers(opt => opt.RespectBrowserAcceptHeader = true)
                 .AddXmlDataContractSerializerFormatters()
                 .AddNewtonsoftJson(opt => opt.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 
-            services.AddCustomMediaType();
+            //services.AddCustomMediaType();
+
+            services.ConfigureVersioning();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerManager logger)
